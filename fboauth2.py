@@ -14,12 +14,12 @@ class FBClient(object):
   access_token_uri = 'https://graph.facebook.com/oauth/access_token'
   graph_api_uri = 'https://graph.facebook.com'
 
-  def __init__(self, client_id, client_secret, scope=None, redirect_uri=None):
+  def __init__(self, client_id, client_secret, scope=None, redirect_uri=None, access_token=None):
     self.client_id = client_id
     self.client_secret = client_secret
     self.redirect_uri = redirect_uri
     self.scope = scope
-    self.access_token = None
+    self.access_token = access_token
 
   def get_auth_url(self, scope=None, redirect_uri=None, state=None):
     if redirect_uri:
