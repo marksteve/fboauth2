@@ -52,13 +52,27 @@ class FBClient(object):
       error = json.loads(response.content)
       raise Exception('%s: %s' % (error['type'], error['message']))
 
-  def graph_request(self, path):
+  def request(self, uri, method='get', **req_kwargs):
     if self.access_token:
-      path = path.lstrip('/')
-      qs = urllib.urlencode({'access_token': self.access_token})
+      method = method.lower()
+
+      if method in ('get', 'options'):
+        req_kwargs['allow_redirects'] = True
+      elif method == 'head':
+        req_kwargs['allow_redirects'] = False
+
+      params = req_kwargs.setdefault('params', {})
+      params['access_token'] = self.access_token
+
       # TODO: Handle HTTP errors
-      response = requests.get('%s/%s?%s' % (self.graph_api_uri, path, qs))
+      response = requests.request(method, uri, **req_kwargs)
+
       return json.loads(response.content)
 
     else:
       raise Exception('Not yet authorized.')
+
+  def graph_request(self, path, *args, **kwargs):
+    path = path.lstrip('/')
+    uri = '%s/%s' % (self.graph_api_uri, path)
+    return self.request(uri, *args, **kwargs)
