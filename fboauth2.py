@@ -41,7 +41,7 @@ class FBClient(object):
         'code': code,
       }
 
-    response = requests.get(self.access_token_uri + '?' + urllib.urlencode(params))
+    response = requests.get(self.access_token_uri, params=params)
 
     if response.ok:
       parsed_response = dict(urlparse.parse_qsl(response.content))
