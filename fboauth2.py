@@ -50,7 +50,12 @@ class FBClient(object):
 
     else:
       error = json.loads(response.content)
-      raise Exception('%s: %s' % (error['type'], error['message']))
+      error = error.get('error', None)
+      if error:
+        # Use get instead of accessing the dict directly as this is safer.
+        raise Exception('%s: %s' % (error.get('type', ''), error.get('message', '')))
+      else:
+        raise Exception('%s' % "An unknown error has occurred.")
 
   def request(self, uri, method='get', **req_kwargs):
     if self.access_token:
