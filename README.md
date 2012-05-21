@@ -1,7 +1,7 @@
 # fboauth2
 Bare minimum Facebook OAuth2 client
 
-## Usage:
+## Usage
 ```python
 from fboauth2 import FBClient
 fbclient = FBClient(CLIENT_ID, CLIENT_SECRET, scope='publish_stream', redirect_uri='http://example.com/callback')
@@ -15,5 +15,5 @@ me = fbclient.graph_request('me')
 print me['name']
 ```
 
-## License:
+## License
 http://marksteve.mit-license.org/
