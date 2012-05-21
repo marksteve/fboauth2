@@ -14,3 +14,6 @@ access_token = fbclient.get_access_token(code)
 me = fbclient.graph_request('me')
 print me['name']
 ```
+
+## License:
+http://marksteve.mit-license.org/
