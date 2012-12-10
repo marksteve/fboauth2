@@ -27,7 +27,7 @@ class FBClient(object):
     params = {
         'client_id': self.client_id,
         'redirect_uri': self.redirect_uri,
-        'scope': scope or self.scope,
+        'scope': scope or self.scope or '',
       }
     if state:
       params['state'] = state
