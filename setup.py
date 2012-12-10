@@ -33,22 +33,6 @@ from setuptools import setup
 setup(
     name='fboauth2',
     version='0.0.2',
-    py_modules=['fboauth2'],
-    author='Mark Steve Samson',
-    author_email='hello@marksteve.com',
-    description='Facebook OAuth2 Client',
-    long_description=__doc__,
-    install_requires=[
-        'requests>=0.14'
-    ],
-)
-
-from setuptools import setup
-
-
-setup(
-    name='fboauth2',
-    version='0.0.3',
     url='https://github.com/marksteve/fboauth2',
     license='MIT',
     author='Mark Steve Samson',
@@ -56,7 +40,6 @@ setup(
     description='Bare minimum Facebook OAuth2 client',
     long_description=__doc__,
     py_modules=['fboauth2'],
-    packages=['packages'],
     zip_safe=False,
     platforms='any',
     install_requires=[
