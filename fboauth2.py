@@ -2,11 +2,6 @@ import requests
 import urllib
 import urlparse
 
-try:
-    import json
-except ImportError:
-    import simplejson as json
-
 
 class FBClient(object):
 
@@ -46,7 +41,7 @@ class FBClient(object):
 
         else:
             try:
-                error = json.loads(response.content).get('error')
+                error = response.json.get('error')
                 if error:
                     error_type = error.get('type')
                     error_message = error.get('message')
