@@ -37,7 +37,7 @@ from setuptools import setup
 
 setup(
     name='fboauth2',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/marksteve/fboauth2',
     license='MIT',
     author='Mark Steve Samson',
