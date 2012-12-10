@@ -9,7 +9,8 @@ class FBClient(object):
     access_token_uri = 'https://graph.facebook.com/oauth/access_token'
     graph_api_uri = 'https://graph.facebook.com'
 
-    def __init__(self, client_id, client_secret, scope=None, redirect_uri=None, access_token=None):
+    def __init__(self, client_id, client_secret, scope=None, redirect_uri=None,
+                 access_token=None):
         self.client_id = client_id
         self.client_secret = client_secret
         self.redirect_uri = redirect_uri
@@ -47,11 +48,12 @@ class FBClient(object):
                     error_message = error.get('message')
                     if error_type and error_message:
                         raise Exception('%s: %s' % (error_type, error_message))
-            except ValueError: # Invalid JSON
+            except ValueError:  # Invalid JSON
                 pass
-            except AttributeError: # Not a dict
+            except AttributeError:  # Not a dict
                 pass
-            raise Exception("An unknown error has occurred: %s" % response.content)
+            raise Exception("An unknown error has occurred: %s" %
+                            response.content)
 
     def request(self, uri, method='get', **req_kwargs):
         if self.access_token:
@@ -68,7 +70,7 @@ class FBClient(object):
             # TODO: Handle HTTP errors
             response = requests.request(method, uri, **req_kwargs)
 
-            return json.loads(response.content)
+            return response.json
 
         else:
             raise Exception('Not yet authorized.')
