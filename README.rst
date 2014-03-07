@@ -2,6 +2,8 @@
 fboauth2
 ========
 
+.. image:: http://img.shields.io/pypi/v/fboauth2.png
+
 Bare minimum Facebook OAuth2 client
 
 
